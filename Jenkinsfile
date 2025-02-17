@@ -11,7 +11,11 @@ tools {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                script {
+                    dir('comp367-webapp') {
+                        sh 'mvn clean install'
+                    }
+                }
             }
         }
     }
