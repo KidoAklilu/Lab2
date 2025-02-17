@@ -1,6 +1,9 @@
-@WebServlet("/welcome")
-public class WelcomeServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().println("Welcome to COMP367");
-    }
-}
+<%@ page import="java.time.LocalTime" %>
+<%
+    String greeting = (LocalTime.now().isBefore(LocalTime.NOON)) ? "Good morning" : "Good afternoon";
+%>
+<html>
+<body>
+    <h1><%= greeting %>, Kidist Aklilu, Welcome to COMP367</h1>
+</body>
+</html>
