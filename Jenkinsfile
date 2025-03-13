@@ -15,6 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    // Navigate to the correct directory before running Maven
                     dir('comp367-webapp') {  
                         sh 'mvn clean package'
                     }
