@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'Maven'  
     }
     environment {
         DOCKER_IMAGE = 'kd122/maven-java-webapp'
@@ -15,7 +15,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'mvn clean package'
+                    dir('comp367-webapp/src/main/webapp') {
+                        sh 'mvn clean package'
+                    }
                 }
             }
         }
