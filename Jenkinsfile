@@ -29,18 +29,17 @@ pipeline {
             }
         }
         stage('Docker Login') {
-            steps {
-                withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
-                    sh 'docker login -u kd122 --password-stdin < <(echo $DOCKER_PASSWORD)'
-                }
-            }
+           steps {
+        script {
+            sh 'docker build -t kd122/my-maven-app:latest .'
+        }
+    }
         }
         stage('Push to Docker Hub') {
             steps {
-                script {
-                    sh 'docker push $DOCKER_IMAGE'
-                }
-            }
+        script {
+            sh 'docker push kd122/my-maven-app:latest'
         }
+    }
     }
 }
