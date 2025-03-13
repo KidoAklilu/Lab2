@@ -30,8 +30,10 @@ pipeline {
         }
         stage('Docker Login') {
             steps {
-                withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
-                    echo 'Docker login successful!'
+                script {
+                    withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
+                        echo "Docker login successful"
+                    }
                 }
             }
         }
