@@ -30,10 +30,10 @@ pipeline {
         }
         stage('Docker Login') {
             steps {
-                withDockerRegistry([credentialsId: 'docker-credentials', url: '']) {  
-                    sh 'echo $DOCKER_PASSWORD | docker login -u kd122 --password-stdin'
-                }
-            }
+        withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
+            sh 'docker login'
+        }
+    }
         }
         stage('Push to Docker Hub') {
             steps {
