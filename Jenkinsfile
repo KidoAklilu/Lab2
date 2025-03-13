@@ -30,10 +30,10 @@ pipeline {
         }
         stage('Docker Login') {
             steps {
-        withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
-            sh 'docker login'
-        }
-    }
+                withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
+                    echo 'Docker login successful!'
+                }
+            }
         }
         stage('Push to Docker Hub') {
             steps {
