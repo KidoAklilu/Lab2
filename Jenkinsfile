@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dir('comp367-webapp/src/main/webapp') {
+                    dir('comp367-webapp') {  
                         sh 'mvn clean package'
                     }
                 }
