@@ -24,7 +24,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker build -t kd122/my-maven-app:latest -f comp367-webapp/Dockerfile .'
+                    sh 'docker build -t $DOCKER_IMAGE .'
                 }
             }
         }
