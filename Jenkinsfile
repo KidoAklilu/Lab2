@@ -4,7 +4,7 @@ pipeline {
         maven 'Maven'  
     }
     environment {
-        DOCKER_IMAGE = 'kd122/maven-java-webapp'
+        DOCKER_IMAGE = 'kd122/my-maven-app:latest'  
     }
     stages {
         stage('Checkout') {
@@ -29,17 +29,18 @@ pipeline {
             }
         }
         stage('Docker Login') {
-           steps {
-        script {
-            sh 'docker build -t kd122/my-maven-app:latest .'
-        }
-    }
+            steps {
+                withDockerRegistry([credentialsId: 'docker-credentials', url: '']) {  
+                    sh 'echo $DOCKER_PASSWORD | docker login -u kd122 --password-stdin'
+                }
+            }
         }
         stage('Push to Docker Hub') {
             steps {
-        script {
-            sh 'docker push kd122/my-maven-app:latest'
+                script {
+                    sh 'docker push $DOCKER_IMAGE'
+                }
+            }
         }
-    }
     }
 }
